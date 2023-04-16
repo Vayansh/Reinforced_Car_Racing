@@ -68,10 +68,7 @@ class Game:
         self.gamedisplays.blit(text,(0,50))
         self.gamedisplays.blit(score,(0,30))
 
-    # def crash(self):
-    #     print(self.score,self.reward,False)
-    #     pygame.quit()
-    #     quit()
+
 
     def background(self):
         self.gamedisplays.blit(backgroundpic,(0,0))
@@ -111,14 +108,7 @@ class Game:
         ],dtype=int) 
          
          
-        # return np.array([self.x-110,
-        #                  680-self.x,
-        #                 self.x-self.obs_startx+car_width,
-        #                 #  self.obs_starty+self.obs_height-self.y,
-        #                 self.obs_startx-self.x-car_width
-        #                 # ,self.obs_starty+125-self.y
-        #                 ],dtype = int)
-        # return np.array([self.x-110,680-self.x,self.obs_startx+car_width-self.x],dtype = int)
+
         
 
     def play_step(self,action):  
@@ -147,7 +137,6 @@ class Game:
         if self.y<self.obs_starty+self.obs_height:
                 if self.x > self.obs_startx and self.x < self.obs_startx + self.obs_width or self.x+car_width > self.obs_startx and self.x+car_width < self.obs_startx+self.obs_width:
                     self.reward = -10
-                    # pygame.quit()
                     return self.reward,True,self.score
         pygame.display.update()
         self.clock.tick(60)
@@ -198,64 +187,4 @@ class Game:
         
     
 
-#     def game_loop(self):
-#         bumped=False
-#         while not bumped:
-#             for event in pygame.event.get():                          
-#                 if event.type==pygame.QUIT:
-#                     pygame.quit()
-#                     quit()
 
-#                 if event.type==pygame.KEYDOWN:
-#                     if event.key==pygame.K_LEFT:
-#                         self.x_change=-5
-#                     if event.key==pygame.K_RIGHT:
-#                         self.x_change=5
-#                 if event.type==pygame.KEYUP:
-#                     if event.key==pygame.K_LEFT or event.key==pygame.K_RIGHT:
-#                         self.x_change=0
-
-#             self.x+=self.x_change
-#             self.update_ui()
-#             self.y2+=self.obstacle_speed
-#             self.obs_starty-=(self.obstacle_speed/4)
-#             self.obstacle()
-#             self.obs_starty+=self.obstacle_speed
-#             self.car()
-#             self.score_system()
-#             if self.x>690-car_width or self.x<110:
-#                 self.crash()
-#             if self.x>display_width-(car_width+110) or self.x<110:
-#                 self.crash()
-#             if self.obs_starty>display_height:
-#                 self.obs_starty=0-self.obs_height
-#                 self.obs_startx=random.randrange(170,(display_width-170))
-#                 self.obs=random.randrange(0,7)
-#                 self.passed=self.passed+1
-#                 self.score+=10
-#                 self.reward += 1
-#                 if int(self.passed)%10==0:
-#                     self.obstacle_speed+4
-#                     pygame.display.update()
-
-#             if self.y<self.obs_starty+self.obs_height:
-#                 if self.x > self.obs_startx and self.x < self.obs_startx + self.obs_width or self.x+car_width > self.obs_startx and self.x+car_width < self.obs_startx+self.obs_width:
-#                     self.crash()
-#             pygame.display.update()
-#             self.clock.tick(60)
-
-# if __name__ == '__main__':
-#     game = Game()
-#     game.game_loop()
-#     # game.__init__()
-#     # action_id = random.randint(0,2)
-#     # action = [0,0,0]
-#     # action[action_id] = 1
-#     # _,g_o,_ = game.play_step(action)
-#     # while ~g_o:
-#     #     action = [0,0,0]
-#     #     action_id = random.randint(0,2)
-#     #     action[action_id] = 1
-#     #     _,g_o,_ = game.play_step(action)
-#     # # pygame.quit()
-#     # quit()
