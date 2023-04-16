@@ -121,7 +121,7 @@ class Game:
             
         if self.x>display_width-(car_width+110) or self.x<110:
                 self.reward = -10
-                # pygame.quit()
+                
                 return self.reward,True,self.score 
                 
         if self.obs_starty>display_height:
