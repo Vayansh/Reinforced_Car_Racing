@@ -33,7 +33,6 @@ def intro_loop():
             if event.type==pygame.QUIT:
                 pygame.quit()
                 quit()
-                sys.exit()
         gamedisplays.blit(intro_background,(0,0))
         largetext=pygame.font.Font('freesansbold.ttf',115)
         TextSurf,TextRect=text_objects("CAR GAME",largetext)
@@ -57,7 +56,6 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             elif action=="quit":
                 pygame.quit()
                 quit()
-                sys.exit()
             elif action=="intro":
                 introduction()
             elif action=="menu":
@@ -227,7 +225,7 @@ def obstacle(obs_startx,obs_starty,obs):
     elif obs==4:
         obs_pic=pygame.image.load("images/car5.jpg")
     elif obs==5:
-        obs_pic=pygame.image.load("iamges/car6.jpg")
+        obs_pic=pygame.image.load("images/car6.jpg")
     elif obs==6:
         obs_pic=pygame.image.load("images/car7.jpg")
     gamedisplays.blit(obs_pic,(obs_startx,obs_starty))

@@ -14,7 +14,7 @@ from model import Linear_QNet, QTrainer
 
 MAX_MEMORY  = 100_000
 BATCH_SIZE = 1000
-LR = 0.001
+LR = 0.0005
 
 class Agent:
     def __init__(self):
@@ -23,7 +23,7 @@ class Agent:
         self.gamma = 0.9
         self.k = []
         self.memory = deque(maxlen = MAX_MEMORY)
-        self.model = Linear_QNet(7,128,3)
+        self.model = Linear_QNet(5,64,3)
         self.trainer = QTrainer(self.model,LR,self.gamma)
          
         
@@ -92,11 +92,9 @@ def train():
             
             if score > record:
                 record =score
-                agent.model.save()
-            if agent.k.count(1) > agent.k.count(0):    
-                print("Game ", agent.n_games,' Scores ', score , ' Records: ',record, ' Epsilon: ' , agent.epsilon , ' By Model')
-            else:
-                print("Game ", agent.n_games,' Scores ', score , ' Records: ',record, ' Epsilon: ' , agent.epsilon , ' By Random')
+            agent.model.save()
+           
+            print("Game ", agent.n_games,' Scores ', score , ' Records: ',record, ' Epsilon: ' , agent.epsilon)
                     
             agent.k = []
             # plot_scores.append(score)

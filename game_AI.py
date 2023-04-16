@@ -103,13 +103,11 @@ class Game:
         # distance 2 of car from obstacle
         
         return np.array([
-            self.x-110,
-            680-self.x,
-            self.x,
-            self.x+car_width,
-            self.obs_startx,
-            self.obs_startx+car_width,
-            self.y -self.obs_starty-self.obs_height
+            self.x-120>5,
+            self.x-120 > 5 and abs(self.x-self.obs_startx) > car_width+5 and 680-self.x>car_width+5,
+            self.x - 120 > self.x-self.obs_startx,
+            680-self.x > self.obs_startx-self.x,
+            680-self.x>car_width+5
         ],dtype=int) 
          
          
@@ -126,6 +124,7 @@ class Game:
     def play_step(self,action):  
         # to be called after getting a output of neural network
         self.move(action)
+        self.reward = 0
         if self.x>690-car_width or self.x<110:
                 self.reward = -10
                 return self.reward,True,self.score 
@@ -140,8 +139,8 @@ class Game:
                 self.obs_startx=random.randrange(170,(display_width-170))
                 self.obs=random.randrange(0,7)
                 self.passed=self.passed+1
-                self.score+=10
-                self.reward += 10
+                self.score +=10
+                self.reward = 10
                 if int(self.passed)%10==0:
                     self.obstacle_speed+=4
                     pygame.display.update()
