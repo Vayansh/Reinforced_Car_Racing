@@ -18,7 +18,6 @@ def test():
     # plot_scores = []
     # plot_mean_scores =[]
     for _ in range(games):
-        while True:
             #get current state
             state_old = game.get_state()
             
